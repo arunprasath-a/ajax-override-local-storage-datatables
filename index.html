@@ -303,6 +303,13 @@ var editor; // use a global for the submit and return data rendering in the exam
 	editor.on( 'preSubmit', function ( e, o, action ) {
         if ( action !== 'remove' ) {
             var firstName = this.field( 'Name' );
+			var age = this.field( 'Age' );
+			var position = this.field( 'Position' );
+			var Office = this.field( 'Office' );
+			var Extn = this.field( 'Extn' );
+			var Startdate = this.field( 'Start date' );
+			var Salary = this.field( 'Salary' );
+		
  
             // Only validate user input values - different values indicate that
             // the end user has not entered a value
@@ -314,6 +321,67 @@ var editor; // use a global for the submit and return data rendering in the exam
                 if ( firstName.val().length >= 20 ) {
                     firstName.error( 'The first name length must be less that 20 characters' );
                 }
+            }
+			
+			if ( ! age.isMultiValue() ) {
+                if ( ! age.val() ) {
+                    age.error( 'Age must be given' );
+                }
+                 
+                if ( age.val().length >= 4 ) {
+                    age.error( 'The first name length must be less that 4' );
+                }
+				
+				
+				
+            }
+			
+			if ( ! position.isMultiValue() ) {
+                if ( ! position.val() ) {
+                    position.error( 'Position must be given' );
+                }
+                 
+                if ( position.val().length >= 4 ) {
+                    position.error( 'Position length must be less that 4' );
+                }
+            }
+			
+			if ( ! Office.isMultiValue() ) {
+                if ( ! Office.val() ) {
+                    Office.error( 'Office must be given' );
+                }
+                 
+                if ( Office.val().length >= 4 ) {
+                    Office.error( 'The first name length must be less that 4' );
+                }
+            }
+			
+			if ( ! Extn.isMultiValue() ) {
+                if ( ! Extn.val() ) {
+                    Extn.error( 'Extn must be given' );
+                }
+                 
+                if ( Extn.val().length >= 4 ) {
+                    Extn.error( 'Extn length must be less that 4' );
+                }
+            }
+			
+			if ( ! Startdate.isMultiValue() ) {
+                if ( ! Startdate.val() ) {
+                    Startdate.error( 'Startdate must be given' );
+                }
+                 
+               }
+			
+			if ( ! Salary.isMultiValue() ) {
+                if ( ! Salary.val() ) {
+                    Salary.error( 'Salary must be given' );
+                }
+                 
+                if ( Salary.val().length >= 4 ) {
+                    Salary.error( 'Salary length must be less that 4' );
+                }
+				
             }
  
             // ... additional validation rules
