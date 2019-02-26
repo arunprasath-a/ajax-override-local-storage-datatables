@@ -289,7 +289,46 @@ var editor; // use a global for the submit and return data rendering in the exam
             // Show Editor what has changed
             successCallback( output );
         }
+		
+		
+		
+		
+		
+		
     } );
+	
+	
+	/* validation part */
+	
+	editor.on( 'preSubmit', function ( e, o, action ) {
+        if ( action !== 'remove' ) {
+            var firstName = this.field( 'Name' );
+ 
+            // Only validate user input values - different values indicate that
+            // the end user has not entered a value
+            if ( ! firstName.isMultiValue() ) {
+                if ( ! firstName.val() ) {
+                    firstName.error( 'A first name must be given' );
+                }
+                 
+                if ( firstName.val().length >= 20 ) {
+                    firstName.error( 'The first name length must be less that 20 characters' );
+                }
+            }
+ 
+            // ... additional validation rules
+ 
+            // If any error was reported, cancel the submission so it can be corrected
+            if ( this.inError() ) {
+                return false;
+            }
+        }
+    } );
+	
+	
+	
+	
+	/*validation part end */
  
     // Initialise the DataTable
     $('#example').DataTable( {
