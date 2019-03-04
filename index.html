@@ -4,6 +4,13 @@
  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+<link rel="stylesheet" href="editor.dataTables.min.css">
+<link rel="stylesheet" href="task1.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   
@@ -13,13 +20,7 @@
 <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
 <script src="dataTables.editor.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
-<link rel="stylesheet" href="editor.dataTables.min.css">
-<link rel="stylesheet" href="task1.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://cdn.datatables.net/colreorder/1.5.1/js/dataTables.colReorder.min.js"></script>
 
@@ -51,6 +52,36 @@ td.highlight {
 .dt-more-container {
    text-align:center;
    margin:2em 0;
+}
+
+.datatables_length{
+    padding-left: 478px;
+    padding-top: 5px;
+}
+
+tr
+{
+background-color:#96beff;
+}
+
+#example{
+border:1px solid black;
+border-radius:3px;
+}
+
+input{
+border:1px solid black;
+    margin: 0;
+}
+
+#btn-example-load-more{
+background-color:#96beff;
+border:1px solid #96beff;
+border-radius:5px;
+}
+
+.buttons-create{
+background-color:#96beff;
 }
 </style>	
 
@@ -359,9 +390,7 @@ td.highlight {
                     position.error( 'Position must be given' );
                 }
                  
-                if ( position.val().length >= 4 ) {
-                    position.error( 'Position length must be less that 4' );
-                }
+               
             }
 			
 			if ( ! Office.isMultiValue() ) {
@@ -369,9 +398,7 @@ td.highlight {
                     Office.error( 'Office must be given' );
                 }
                  
-                if ( Office.val().length >= 4 ) {
-                    Office.error( 'The first name length must be less that 4' );
-                }
+              
             }
 			
 			if ( ! Extn.isMultiValue() ) {
@@ -379,9 +406,7 @@ td.highlight {
                     Extn.error( 'Extn must be given' );
                 }
                  
-                if ( Extn.val().length >= 4 ) {
-                    Extn.error( 'Extn length must be less that 4' );
-                }
+                
             }
 			
 			if ( ! Startdate.isMultiValue() ) {
@@ -396,9 +421,7 @@ td.highlight {
                     Salary.error( 'Salary must be given' );
                 }
                  
-                if ( Salary.val().length >= 4 ) {
-                    Salary.error( 'Salary length must be less that 4' );
-                }
+               
 				
             }
  
@@ -419,8 +442,10 @@ td.highlight {
     // Initialise the DataTable
 	
     var table =$('#example').DataTable( {
-        dom: "Bfrtip",
+        dom: "Blfrtip",
 		responsive: true,
+		lengthMenu: [[4, 8, 10, -1], [4, 8, 10, "All"]],
+		
 		
 			
         data: $.map( todo, function (value, key) {
@@ -446,6 +471,7 @@ td.highlight {
             { data: "Start date" },
             { data: "Salary" }
         ],
+		
         select: true,
         buttons: [
             { extend: "create", editor: editor },
@@ -507,6 +533,7 @@ td.highlight {
       table.page.loadMore();
    });
    
+
    
  
 } );
