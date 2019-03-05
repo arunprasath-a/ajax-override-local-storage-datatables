@@ -146,8 +146,7 @@ border-radius:3px;
         <thead>
             <tr>
                 <th>Name</th>
-				<th>Age</th>
-                <th>Position</th>
+				<th>Position</th>
                 <th>Office</th>
                 <th>Extn.</th>
                 <th>Start date</th>
@@ -284,9 +283,6 @@ border-radius:3px;
             {
                 label: "Name:",
                 name: "Name"
-            }, {
-                label: "Age:",
-                name: "Age"
             }
 			, {
                 label: "Position:",
@@ -355,7 +351,7 @@ border-radius:3px;
 	editor.on( 'preSubmit', function ( e, o, action ) {
         if ( action !== 'remove' ) {
             var firstName = this.field( 'Name' );
-			var age = this.field( 'Age' );
+			
 			var position = this.field( 'Position' );
 			var Office = this.field( 'Office' );
 			var Extn = this.field( 'Extn' );
@@ -375,18 +371,7 @@ border-radius:3px;
                 }
             }
 			
-			if ( ! age.isMultiValue() ) {
-                if ( ! age.val() ) {
-                    age.error( 'Age must be given' );
-                }
-                 
-                if ( age.val().length >= 4 ) {
-                    age.error( 'The first name length must be less that 4' );
-                }
-				
-				
-				
-            }
+			
 			
 			if ( ! position.isMultiValue() ) {
                 if ( ! position.val() ) {
@@ -467,7 +452,7 @@ border-radius:3px;
 		colReorder: true,
 		columns: [
 			{ data: "Name" },
-            { data: "Age" },
+            
             { data: "Position" },
             { data: "Office" },
             { data: "Extn" },
