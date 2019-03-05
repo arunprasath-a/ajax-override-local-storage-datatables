@@ -146,11 +146,13 @@ border-radius:3px;
         <thead>
             <tr>
                 <th>Name</th>
+				<th>Age</th>
 				<th>Position</th>
                 <th>Office</th>
                 <th>Extn.</th>
                 <th>Start date</th>
                 <th>Salary</th>
+				
             </tr>
 			
 
@@ -283,7 +285,11 @@ border-radius:3px;
             {
                 label: "Name:",
                 name: "Name"
-            }
+            },
+			{
+                label: "Age:",
+                name: "Age"
+            }			
 			, {
                 label: "Position:",
                 name: "Position"
@@ -351,7 +357,7 @@ border-radius:3px;
 	editor.on( 'preSubmit', function ( e, o, action ) {
         if ( action !== 'remove' ) {
             var firstName = this.field( 'Name' );
-			
+			var Age = this.field( 'Age' );
 			var position = this.field( 'Position' );
 			var Office = this.field( 'Office' );
 			var Extn = this.field( 'Extn' );
@@ -370,6 +376,20 @@ border-radius:3px;
                     firstName.error( 'The first name length must be less that 20 characters' );
                 }
             }
+			
+			
+			if ( ! Age.isMultiValue() ) {
+                if ( ! Age.val() ) {
+                    Age.error( 'Age must be given' );
+                }
+				
+				if (! /^-?\d*[.,]?\d{0,2}$/.test(Age.val()) ) {
+                    Age.error( 'The Age should be given in number only' );
+                }
+                             
+				
+            }
+ 
 			
 			
 			
@@ -408,12 +428,15 @@ border-radius:3px;
                 if ( ! Salary.val() ) {
                     Salary.error( 'Salary must be given' );
                 }
-                 
-               
+				
+				if (! /^-?\d*[.,]?\d{0,2}$/.test(Salary.val()) ) {
+                    Salary.error( 'The Salary should be given in number only' );
+                }
+                             
 				
             }
  
-            // ... additional validation rules
+           
  
             // If any error was reported, cancel the submission so it can be corrected
             if ( this.inError() ) {
@@ -432,7 +455,7 @@ border-radius:3px;
     var table =$('#example').DataTable( {
         dom: "Blfrtip",
 		responsive: true,
-		lengthMenu: [[4, 8, 10, -1], [4, 8, 10, "All"]],
+		lengthMenu: [[2, 4, 8,12, -1], [2, 4, 8,12, "All"]],
 		
 		
 			
@@ -452,7 +475,7 @@ border-radius:3px;
 		colReorder: true,
 		columns: [
 			{ data: "Name" },
-            
+            { data: "Age" },
             { data: "Position" },
             { data: "Office" },
             { data: "Extn" },
